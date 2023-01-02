@@ -21,3 +21,12 @@ node(){
           sh "${sonarScanner}/bin/sonar-scanner"
             }
     }
+    }
+    catch (Exception e){
+        currentBuild.result = 'FAILURE'
+        echo currentBuild.currentResult
+    }finally{
+        emailext body: '''Hello Mujeeb ,
+    The build was successful''', subject: 'Build Status!!', to: 'mujeeb9742@gmail.com'
+    }
+}
